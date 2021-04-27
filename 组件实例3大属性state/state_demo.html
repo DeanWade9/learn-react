@@ -25,12 +25,24 @@
         this.state = {
           isHot: true
         }
+        this.changeHot = this.changeHot.bind(this)
       }
       render() {
+        const {isHot} = this.state
         // render中的this就是组件的实例对象 包含了state等属性
-        console.log(this);
+        // console.log(this);
         // return <h1 id="title">{this.state.isHot ? 'Hot' : 'Cold'} Day Today</h1>
-        return <h1 onClick={demo}>{this.state.isHot ? 'Hot' : 'Cold'} Day Today</h1>
+        // 原生onclick方法在react中需要用onClick 就像原生class 在react中是className
+        // onClick={demo} 不要写成onClick={demo()} 不然相当于inClick=undefined
+        return <h1 onClick={this.changeHot}>{isHot ? 'Hot' : 'Cold'} Day Today</h1>
+      }
+      changeHot () {
+        console.log(this);
+        const isHot = this.state.isHot
+        // 注意！！！！状态不可以直接更改！！要借助内置api去更改
+        // this.state.isHot = !this.state.isHot
+        // 状态必须通过setState修改
+        this.setState({isHot:!isHot})
       }
     }
     // 2.渲染组件到页面
@@ -48,10 +60,10 @@
     //   console.log('clicked!!');
     // }
 
-    // 点击事件3 推荐的事件绑定机制
-    function demo () {
-      console.log('clicked@@@');
-    }
+     // 点击事件3 推荐的事件绑定机制
+    //  function changeHot () {
+    //     console.log(this.state);
+    //   }
   </script>
 </body>
 </html>
