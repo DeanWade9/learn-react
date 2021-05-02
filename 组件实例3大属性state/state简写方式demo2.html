@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <script type="text/babel">
+    class Weather extends React.Component {
+      constructor (props) {
+        super(props)
+        this.state = {'isHot': true, 'wind': 2}
+        this.handleClick = this.handleClick.bind(this)
+      }
+
+      // handleClick放在Weather原型对象上，供实例使用
+      // 通过Weather实例调用handleClick时，handleClick中的this就是Weather实例
+      handleClick () {
+        console.log(this);
+        // this.state.isHot = !this.state.isHot
+        const {isHot} = this.state
+        this.setState({isHot: !isHot})
+      }
+
+      render () {
+        return <h1 onClick={this.handleClick}>{this.state.isHot? 'Hot' : 'Cold'} Day</h1>
+      }
+    }
+
+    ReactDOM.render(<Weather />, document.getElementById('test'))
+
+    // const a = new Weather()
+    // console.log(a);
+  </script>
+</body>
+</html>
