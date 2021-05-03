@@ -20,6 +20,11 @@
     // 创建组件
     class Person extends React.Component {
       // state = { name: 'Dean', gender: 'Male', age: 28 }
+      constructor () {
+        super()
+        console.log('in constructor:', this.props);
+      }
+
       render () {
         // console.log(this)
         return (
@@ -31,17 +36,17 @@
           </ul>
         )
       }
-    }
 
-    Person.propTypes = {
-      // name: React.PropTypes.string  React 15可以使用 16被弃用了
-      name: PropTypes.string,
-      age: PropTypes.number.isRequired,
-      speak: PropTypes.func
-    }
+      static propTypes = {
+        // name: React.PropTypes.string  React 15可以使用 16被弃用了
+        name: PropTypes.string,
+        age: PropTypes.number.isRequired,
+        speak: PropTypes.func
+      }
 
-    Person.defaultProps = {
-      name: 'Male'
+      static defaultProps = {
+        name: 'Male'
+      }
     }
 
     function speak () {
