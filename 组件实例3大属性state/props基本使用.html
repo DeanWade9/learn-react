@@ -34,11 +34,16 @@
 
     Person.propTypes = {
       // name: React.PropTypes.string  React 15可以使用 16被弃用了
-      name: PropTypes.string
+      name: PropTypes.string,
+      age: PropTypes.number
+    }
+
+    Person.defaultProps = {
+      name: 'Male'
     }
     // 这里模拟服务器返回的数据为data
     // const data = { name:"dean", gender:"male",age: 28, job: 'frontend developer', wife: 'jing' }
-    ReactDOM.render(<Person name={111} gender="male" age={28} job="frontend developer" wife="jing" />, document.getElementById('test1'))
+    ReactDOM.render(<Person gender="male" age={28} job="frontend developer" wife="jing" />, document.getElementById('test1'))
     // ReactDOM.render(<Person {...data} />, document.getElementById('test1'))
   </script>
 </body>
