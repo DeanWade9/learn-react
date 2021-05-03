@@ -18,18 +18,18 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/babel">
     // 创建函数式组件
-    function Person () {
-      console.log('this in function Person:', this);
+    function Person (props) {
+      console.log('props:', props);
       return (
         <ul>
-          <li>Name:</li>  
-          <li>Gender:</li>  
-          <li>Age:</li>  
+          <li>Name: {props.name}</li>  
+          <li>Gender: {props.gender}</li>  
+          <li>Age: {props.age}</li>  
         </ul>
       )
     }
 
-    ReactDOM.render(<Person />, document.getElementById('test1'))
+    ReactDOM.render(<Person  name="dean" gender="male" age={28} />, document.getElementById('test1'))
   </script>
 </body>
 </html>
