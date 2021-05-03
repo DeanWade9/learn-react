@@ -27,6 +27,7 @@
             <li>Name: {this.props.name}</li>  
             <li>Gender: {this.props.gender}</li>  
             <li>Age: {this.props.age + 1}</li>  
+            <li onClick={this.props.speak}>this is a function</li>
           </ul>
         )
       }
@@ -35,15 +36,20 @@
     Person.propTypes = {
       // name: React.PropTypes.string  React 15可以使用 16被弃用了
       name: PropTypes.string,
-      age: PropTypes.number
+      age: PropTypes.number.isRequired,
+      speak: PropTypes.func
     }
 
     Person.defaultProps = {
       name: 'Male'
     }
+
+    function speak () {
+      console.log('i am speaking...');
+    }
     // 这里模拟服务器返回的数据为data
     // const data = { name:"dean", gender:"male",age: 28, job: 'frontend developer', wife: 'jing' }
-    ReactDOM.render(<Person gender="male" age={28} job="frontend developer" wife="jing" />, document.getElementById('test1'))
+    ReactDOM.render(<Person gender="male" age={28} job="frontend developer" wife="jing" speak={speak} />, document.getElementById('test1'))
     // ReactDOM.render(<Person {...data} />, document.getElementById('test1'))
   </script>
 </body>
