@@ -7,7 +7,8 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="test"></div>
+  <div id="test1"></div>
+  <div id="test2"></div>
   <!-- 引入react核心库 -->
   <script type="text/javascript" src="../js/react.development.js"></script>
   <!-- 引入react-dom 用于支持react操作DOM -->
@@ -18,19 +19,21 @@
   <script type="text/babel">
     // 创建组件
     class Person extends React.Component {
-      state = { name: 'Dean', gender: 'Male', age: 28 }
+      // state = { name: 'Dean', gender: 'Male', age: 28 }
       render () {
+        console.log(this)
         return (
           <ul>
-            <li>Name: {this.state.name}</li>  
-            <li>Gender: {this.state.gender}</li>  
-            <li>Age: {this.state.age}</li>  
+            <li>Name: {this.props.name}</li>  
+            <li>Gender: {this.props.gender}</li>  
+            <li>Age: {this.props.age}</li>  
           </ul>
         )
       }
     }
 
-    ReactDOM.render(<Person />, document.getElementById('test'))
+    ReactDOM.render(<Person name="dean" gender="male" age="28" />, document.getElementById('test1'))
+    ReactDOM.render(<Person name="jing" gender="female" age="30" />, document.getElementById('test2'))
   </script>
 </body>
 </html>
