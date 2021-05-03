@@ -14,7 +14,8 @@
   <script type="text/javascript" src="../js/react-dom.development.js"></script>
   <!-- 引入babel 用于将jsx转化为js -->
   <script type="text/javascript" src="../js/babel.min.js"></script>
-
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/babel">
     // 创建组件
     class Person extends React.Component {
@@ -30,10 +31,15 @@
         )
       }
     }
+
+    Person.propTypes = {
+      // name: React.PropTypes.string  React 15可以使用 16被弃用了
+      name: PropTypes.string
+    }
     // 这里模拟服务器返回的数据为data
-    const data = { name:"dean", gender:"male",age: 28, job: 'frontend developer', wife: 'jing' }
-    // ReactDOM.render(<Person name="dean" gender="male" age="28" job="frontend developer" wife="jing" />, document.getElementById('test1'))
-    ReactDOM.render(<Person {...data} />, document.getElementById('test1'))
+    // const data = { name:"dean", gender:"male",age: 28, job: 'frontend developer', wife: 'jing' }
+    ReactDOM.render(<Person name={111} gender="male" age={28} job="frontend developer" wife="jing" />, document.getElementById('test1'))
+    // ReactDOM.render(<Person {...data} />, document.getElementById('test1'))
   </script>
 </body>
 </html>
