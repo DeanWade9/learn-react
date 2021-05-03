@@ -8,7 +8,6 @@
 </head>
 <body>
   <div id="test1"></div>
-  <div id="test2"></div>
   <!-- 引入react核心库 -->
   <script type="text/javascript" src="../js/react.development.js"></script>
   <!-- 引入react-dom 用于支持react操作DOM -->
@@ -21,19 +20,20 @@
     class Person extends React.Component {
       // state = { name: 'Dean', gender: 'Male', age: 28 }
       render () {
-        console.log(this)
+        // console.log(this)
         return (
           <ul>
             <li>Name: {this.props.name}</li>  
             <li>Gender: {this.props.gender}</li>  
-            <li>Age: {this.props.age}</li>  
+            <li>Age: {this.props.age + 1}</li>  
           </ul>
         )
       }
     }
-
-    ReactDOM.render(<Person name="dean" gender="male" age="28" />, document.getElementById('test1'))
-    ReactDOM.render(<Person name="jing" gender="female" age="30" />, document.getElementById('test2'))
+    // 这里模拟服务器返回的数据为data
+    const data = { name:"dean", gender:"male",age: 28, job: 'frontend developer', wife: 'jing' }
+    // ReactDOM.render(<Person name="dean" gender="male" age="28" job="frontend developer" wife="jing" />, document.getElementById('test1'))
+    ReactDOM.render(<Person {...data} />, document.getElementById('test1'))
   </script>
 </body>
 </html>
