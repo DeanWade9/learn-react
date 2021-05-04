@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>受控组件</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    // 创建组件
+    class Login extends React.Component {
+      state = {
+        username: '',
+        password: ''
+      }
+      render () {
+        return (
+          <form action="http://www.baidu.com" onSubmit={this.handleSubmit}>
+            Username:<input onChange={this.saveName} type="text" name="username" />
+            Password:<input onChange={this.savePass} type="password" name="password" />
+            <button>Login</button>
+          </form>
+        )
+      }
+
+      saveName = (event) => {
+        console.log('name change,',event.target.value);
+        this.setState({username: event.target.value})
+      }
+
+      savePass = (event) => {
+        console.log('password change,',event.target.value);
+        this.setState({password: event.target.value})
+      }
+
+      handleSubmit = (event) => {
+        event.preventDefault() // 阻止表单提交
+        const {username, password} = this.state
+        alert(`username is: ${username}, and password is: ${password}`)
+        // alert(`username is: ${this.username.value}, and password is: ${this.password.value}`)
+      }
+    }
+
+    ReactDOM.render(<Login />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
