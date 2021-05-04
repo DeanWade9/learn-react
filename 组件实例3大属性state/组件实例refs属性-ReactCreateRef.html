@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React.createRef</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class Demo extends React.Component {
+      // React.createRef调用后返回一个容器，用来存储被ref标识的节点 该容器是专人专用的 定义几个ref 就要创建几个容器
+      myRef1 = React.createRef()
+      myRef2 = React.createRef()
+      render () {
+        return (
+          <div>
+            <input type="text" ref={this.myRef1} placeholder="点击按钮提示数据" />
+            <button onClick={this.handleClick}>点我提示</button>
+            <input type="text" onBlur={this.handleBlur} ref={this.myRef2} placeholder="失去焦点提示数据" />
+          </div>
+        )
+      }
+
+      handleClick = () => {
+        console.log(this.myRef1)
+        console.log(this.myRef1.current.value);
+      }
+
+      handleBlur = () => {
+        console.log(this.myRef2.current.value);
+      }
+    }
+
+    ReactDOM.render(<Demo />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
