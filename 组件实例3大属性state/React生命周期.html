@@ -19,22 +19,18 @@
   <script type="text/babel">
     class Life extends React.Component {
       state = { opacity: 1 }
+      // 初始化渲染 状态更新后调用
       render () {
         return (
           <div>
             <h2 style={{ opacity: this.state.opacity }}>React冲鸭!</h2>
             <button onClick={this.fade}>Go!</button>
-            <button onClick={this.start}>Start</button>
           </div>
         )
       }
 
-      fade = () => {
-        // 卸载组件
-        ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
-      }
-
-      start = () => {
+      // 组件挂载完毕以后调用
+      componentDidMount () {
         setInterval(() => {
           console.log('start');
           let {opacity} = this.state
@@ -45,6 +41,11 @@
             this.setState({opacity: 1})
           }
         }, 200);
+      }
+
+      fade = () => {
+        // 卸载组件
+        ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
       }
     }
 
