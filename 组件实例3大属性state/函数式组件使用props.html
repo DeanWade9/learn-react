@@ -29,7 +29,18 @@
       )
     }
 
-    ReactDOM.render(<Person  name="dean" gender="male" age={28} />, document.getElementById('test1'))
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      age: PropTypes.number,
+      gender: PropTypes.string
+    }
+
+    Person.defaultProps = {
+      age: 28,
+      gender: '-'
+    }
+
+    ReactDOM.render(<Person  age={26} />, document.getElementById('test1'))
   </script>
 </body>
 </html>
