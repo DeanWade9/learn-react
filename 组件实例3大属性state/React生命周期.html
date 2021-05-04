@@ -31,7 +31,7 @@
 
       // 组件挂载完毕以后调用
       componentDidMount () {
-        setInterval(() => {
+        this.timer = setInterval(() => {
           console.log('start');
           let {opacity} = this.state
           if (opacity > 0) {
@@ -44,6 +44,8 @@
       }
 
       fade = () => {
+        // 清空定时器
+        clearInterval(this.timer)
         // 卸载组件
         ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
       }
