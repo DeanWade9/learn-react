@@ -18,11 +18,14 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/babel">
     class Demo extends React.Component { 
+      state = { isHot: true }
       render () {
-        console.log(this);
+        const {isHot} = this.state
         return (
           <div>
-            <input ref={c => this.input1 = c} type="text" placeholder="点击按钮提示数据" />
+            <div>Today is {isHot? 'Hot' : 'Cold'}</div>
+            <div><button onClick={this.changeWeather}>Click to change weather</button></div>
+            <input ref={c => {this.input1 = c; console.log('triggered,arg is:', c)}} type="text" placeholder="点击按钮提示数据" />
             <button onClick={this.handleClick}>点我提示</button>  
             <input ref={c => this.input2 = c} onBlur={this.handleBlur} type="text" placeholder="失去焦点提示数据" />  
           </div>
@@ -35,6 +38,11 @@
 
       handleBlur = () => {
         console.log(this.input2.value);
+      }
+
+      changeWeather = () => {
+        const {isHot} = this.state
+        this.setState({isHot: !isHot})
       }
     }
 
