@@ -69,21 +69,26 @@
       }
 
       // 组件更新完毕调用
-      componentDidUpdate (preProps, preState) {
-        console.log(`componentDidUpdate---preProps:${preProps}---preState:${preState}`)
+      componentDidUpdate (preProps, preState, snapshot) {
+        console.log('componentDidUpdate---', 'preProps:', preProps, 'preState:', preState)
+        console.log('componentDidUpdate-snapshot:', snapshot);
       }
 
       // getDerivedStateFromProps 会在调用 render 方法之前调用
       // 并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 state，如果返回 null 则不更新任何内容。
       // 此方法适用于罕见的用例，即 state 的值在任何时候都取决于 props
-      static getDerivedStateFromProps (props) {
-        console.log('getDerivedStateFromProps', props)
+      static getDerivedStateFromProps (props, state) {
+        console.log('getDerivedStateFromProps', 'props:', props, 'state:', state)
         return null
       }
 
       // 必须返回一个snapshot值或者null
+      // getSnapshotBeforeUpdate() 在最近一次渲染输出（提交到 DOM 节点）之前调用。
+      // 它使得组件能在发生更改之前从 DOM 中捕获一些信息（例如，滚动位置）。
+      // 此生命周期方法的任何返回值将作为参数传递给 componentDidUpdate()。
       getSnapshotBeforeUpdate () {
         console.log('getSnapshotBeforeUpdate')
+        return 'dean hiroshi'
       }
     }
 
