@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+  <style>
+    .list {
+      width: 200px;
+      height: 150px;
+      background: skyblue;
+      overflow: auto;
+    }
+    .list ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    .list li {
+      list-style: none;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div id="newslist"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class NewsList extends React.Component {
+      state = { newsArr: [] }
+
+      // 组件一挂载，就开启循环定时器
+      componentDidMount () {
+        setInterval(() => {
+          // 获取原来状态
+          const {newsArr} = this.state
+          // 模拟一条新闻
+          const news = '新闻' + (newsArr.length + 1)
+          // 更新状态
+          this.setState({newsArr: [news, ...newsArr]})
+        }, 1000)
+      }
+
+      getSnapshotBeforeUpdate () {
+        console.log('getSnapshotBeoreUpdate')
+        // scrollHeight是目标内容区高度 getSnapshotBeoreUpdate中return的东西可以在componentDidUpdate里接收
+        return this.refs.list.scrollHeight
+      }
+
+      componentDidUpdate (prevProps, prevState, height) {
+        console.log('componentDidUpdate')
+        // scrollTop有点类似于margin-top的效果
+        this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+      }
+
+      render () {
+        return (
+          <div className="list" ref="list">
+            <ul>
+              {
+                this.state.newsArr.map((n, index) => {
+                  return <li key={index}>{n}</li>
+                })
+              }
+            </ul>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<NewsList />, document.getElementById('newslist'))
+  </script>
+</body>
+</html>
