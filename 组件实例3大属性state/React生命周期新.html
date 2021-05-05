@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期新</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class Count extends React.Component {
+      constructor (props) {
+        console.log('constructor')
+        super(props)
+        this.state = { number: 0 }
+      }
+
+      // 初始化渲染 状态更新后调用
+      render () {
+        console.log('render')
+        return (
+          <div>
+            <h2>Number is: {this.state.number}</h2>
+            <button onClick={this.add}>+1</button>
+            <button onClick={this.remove}>卸载组件</button>
+            <button onClick={this.force}>不修改状态，强制更新</button>
+          </div>
+        )
+      }
+
+      add = () => {
+          const {number} = this.state
+          this.setState({ number: number +1 })
+      }
+
+      remove = () => {
+        console.log('unmountComponentAtNode')
+        ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
+      }
+
+      force = () => {
+        console.log('forceUpdate')
+        this.forceUpdate()
+      }
+
+      // 组件已经挂在后调用
+      componentDidMount () {
+        console.log('componentDidMount')
+      }
+
+      // 组件即将被卸载前调用
+      componentWillUnmount() {
+        console.log('componentWillUnmount')
+      }
+
+      // 组件状态更新的阀门，必须返回true或者false 返回true就允许修改state，返回false就禁止修改state
+      shouldComponentUpdate () {
+        console.log('shouldComponentUpdate')
+        return true
+      }
+
+      // 组件更新完毕调用
+      componentDidUpdate (preProps, preState) {
+        console.log(`componentDidUpdate---preProps:${preProps}---preState:${preState}`)
+      }
+
+      // getDerivedStateFromProps 会在调用 render 方法之前调用
+      // 并且在初始挂载及后续更新时都会被调用。它应返回一个对象来更新 state，如果返回 null 则不更新任何内容。
+      // 此方法适用于罕见的用例，即 state 的值在任何时候都取决于 props
+      static getDerivedStateFromProps (props) {
+        console.log('getDerivedStateFromProps', props)
+        return null
+      }
+
+      // 必须返回一个snapshot值或者null
+      getSnapshotBeforeUpdate () {
+        console.log('getSnapshotBeforeUpdate')
+      }
+    }
+
+    ReactDOM.render(<Count count={999} />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
