@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生命周期旧</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class Count extends React.Component {
+      constructor (props) {
+        console.log('constructor')
+        super(props)
+        this.state = { number: 0 }
+      }
+
+      // 初始化渲染 状态更新后调用
+      render () {
+        console.log('render')
+        return (
+          <div>
+            <h2>Number is: {this.state.number}</h2>
+            <button onClick={this.add}>+1</button>
+            <button onClick={this.remove}>卸载组件</button>
+            <button onClick={this.force}>不修改状态，强制更新</button>
+          </div>
+        )
+      }
+
+      add = () => {
+          const {number} = this.state
+          this.setState({ number: number +1 })
+      }
+
+      remove = () => {
+        console.log('unmountComponentAtNode')
+        ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
+      }
+
+      force = () => {
+        console.log('forceUpdate')
+        this.forceUpdate()
+      }
+
+      // 组件已经挂在后调用
+      componentDidMount () {
+        console.log('componentDidMount')
+      }
+
+      // 组件将要被挂在前调用
+      componentWillMount () {
+        console.log('componentWillMount')
+      }
+
+      // 组件即将被卸载前调用
+      componentWillUnmount() {
+        console.log('componentWillUnmount')
+      }
+
+      // 组件状态更新的阀门，必须返回true或者false 返回true就允许修改state，返回false就禁止修改state
+      shouldComponentUpdate () {
+        console.log('shouldComponentUpdate')
+        return false
+      }
+
+      // 组件将要更新前调用
+      componentWillUpdate () {
+        console.log('componentWillUpdate')
+      }
+
+      // 组件更新完毕调用
+      componentDidUpdate () {
+        console.log('componentDidUpdate')
+      }
+    }
+
+    ReactDOM.render(<Count />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
