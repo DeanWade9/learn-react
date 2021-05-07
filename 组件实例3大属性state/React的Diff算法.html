@@ -38,8 +38,8 @@
             <button onClick={this.add}>Add one</button>
             <ul>
               {
-                this.state.person.map((e, index) => {
-                  return <li key={index}>{e.name}----{e.age}</li>
+                this.state.person.map(e => {
+                  return <li key={e.id}>{e.name}----{e.age}</li>
                 })
               }
             </ul>  
