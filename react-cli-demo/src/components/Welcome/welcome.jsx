@@ -3,6 +3,6 @@ import './welcome.css'
 
 export default class Welcome extends Component {
   render () {
-    return <h2 className="welcome">Welcome</h2>
+    return <h2 className="title">Welcome</h2>
   }
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './Hello.css'
+import hello from './Hello.module.css'
 
 // 定义并且暴露Hello组件
 export default class Hello extends Component {
   render () {
-    return <h2 className="title">Hello React!</h2>
+    return <h2 className={hello.title}>Hello React!</h2>
   }
 }
