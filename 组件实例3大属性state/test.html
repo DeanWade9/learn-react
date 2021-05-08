@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Animal {
+      constructor (name, color) {
+        this.name = name;
+        this.color = color;
+      }
+
+      speak () {
+        console.log('speak function called');
+        console.log(this);
+      }
+    }
+
+    const a1 = new Animal('murphy', 'white')
+    a1.speak()
+
+    // const fn = a1.speak
+    // fn()
+
+  </script>
+</body>
+</html>

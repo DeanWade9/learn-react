@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Hello.css'
+import './index.css'
 
 // 定义并且暴露Hello组件
 export default class Hello extends Component {
