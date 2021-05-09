@@ -20,9 +20,16 @@ export default class Header extends Component {
     const {keyCode, target} = event
     // 判断是否是按回车键
     if (event.keyCode !== 13) return
+    // 添加的todo不能为空
+    if (target.value.trim() === '') {
+      alert('输入不能为空')
+      return
+    }
     // 准备好一个todoObj
     const todoObj = {id: nanoid(), name: target.value, done: false}
     // 将todoObj传递给App
     this.props.addTodo(todoObj)
+    // 清空刚才的输入
+    target.value = ''
   }
 }
