@@ -12,8 +12,13 @@ export default class App extends Component {
     {id: '003', name: '写代码', done: false}
   ] }
 
-  func = (data) => {
-    console.log('receive data from Header Component:', data)
+  addTodo = (todoObj) => {
+    // 获取原todos
+    const {todos} = this.state
+    // 追加新todo
+    const newTodos = [todoObj, ...todos]
+    // 更新状态
+    this.setState({todos: newTodos})
   }
 
   render() {
@@ -21,7 +26,7 @@ export default class App extends Component {
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header func={this.func}/>
+          <Header addTodo={this.addTodo}/>
           <List todos={todos} />
           <Footer />
         </div>

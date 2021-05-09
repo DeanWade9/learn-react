@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {nanoid} from 'nanoid'
 import './index.css'
 
 export default class Header extends Component {
@@ -14,8 +15,14 @@ export default class Header extends Component {
     // 绑定事件的元素和要操作的元素是同一个元素，不用ref，可以用event接收事件源
     // event.keyCode对应按键编码 13代表回车键
     // 如果案件不是回车键13就return 否则获取并输出内容
+
+    // 解构获取keyCode和target
+    const {keyCode, target} = event
+    // 判断是否是按回车键
     if (event.keyCode !== 13) return
-    console.log(event.target.value, `event.keyCode:`, event.keyCode)
-    this.props.func(event.target.value)
+    // 准备好一个todoObj
+    const todoObj = {id: nanoid(), name: target.value, done: false}
+    // 将todoObj传递给App
+    this.props.addTodo(todoObj)
   }
 }
