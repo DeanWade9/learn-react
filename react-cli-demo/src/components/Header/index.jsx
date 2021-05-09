@@ -16,5 +16,6 @@ export default class Header extends Component {
     // 如果案件不是回车键13就return 否则获取并输出内容
     if (event.keyCode !== 13) return
     console.log(event.target.value, `event.keyCode:`, event.keyCode)
+    this.props.func(event.target.value)
   }
 }

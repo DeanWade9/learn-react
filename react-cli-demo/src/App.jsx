@@ -12,12 +12,16 @@ export default class App extends Component {
     {id: '003', name: '写代码', done: false}
   ] }
 
+  func = (data) => {
+    console.log('receive data from Header Component:', data)
+  }
+
   render() {
     const { todos } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header />
+          <Header func={this.func}/>
           <List todos={todos} />
           <Footer />
         </div>
