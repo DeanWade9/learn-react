@@ -31,11 +31,19 @@ export default class App extends Component {
     })
     this.setState({todos: newTodos})
   }
-
+  // 删除todo对象
   deleteTodo = (id) => {
     const {todos} = this.state
     const newTodos = todos.filter(todo => {
       return todo.id !== id
+    })
+    this.setState({todos: newTodos})
+  }
+  // 批量操作todo对象
+  checkAllTodos = (done) => {
+    const {todos} = this.state
+    const newTodos = todos.map(todo => {
+      return {...todo, done}
     })
     this.setState({todos: newTodos})
   }
@@ -47,7 +55,7 @@ export default class App extends Component {
         <div className="todo-wrap">
           <Header addTodo={this.addTodo}/>
           <List todos={todos} updateTodo={this.updateTodo} deleteTodo={this.deleteTodo} />
-          <Footer todos={todos} />
+          <Footer todos={todos} checkAllTodos={this.checkAllTodos} />
         </div>
       </div>
     )
