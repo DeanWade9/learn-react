@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {nanoid} from 'nanoid'
 import './index.css'
 
 export default class Header extends Component {
+
+  // 对接收的props限制类型和必要性
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired
+  }
+
   render() {
     return (
       <div className="todo-header">
@@ -11,6 +18,7 @@ export default class Header extends Component {
     )
   }
 
+  // 键盘事件回调
   handleKeyUp = (event) => {
     // 绑定事件的元素和要操作的元素是同一个元素，不用ref，可以用event接收事件源
     // event.keyCode对应按键编码 13代表回车键

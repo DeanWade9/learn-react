@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Item from '../Item'
 import './index.css'
 
 export default class List extends Component {
+
+  // 对接收的props限制类型和必要性
+  static propTypes = {
+    todos: PropTypes.array.isRequired,
+    updateTodo: PropTypes.func.isRequired
+  }
+
   render() {
     const {todos, updateTodo} = this.props
     return (
