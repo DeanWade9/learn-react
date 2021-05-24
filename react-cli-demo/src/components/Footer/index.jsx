@@ -7,6 +7,10 @@ export default class Footer extends Component {
     this.props.checkAllTodos(event.target.checked)
   }
 
+  handleClearAllDone = () => {
+    this.props.clearAllDone()
+  }
+
   render() {
     const {todos} = this.props
     // 已完成数量 array的reduce方法,专门用来统计
@@ -22,7 +26,7 @@ export default class Footer extends Component {
         <span>
           <span>已完成{doneCount}</span> / 全部{total}
         </span>
-        <button className="btn btn-danger">清除已完成任务</button>
+        <button className="btn btn-danger" onClick={this.handleClearAllDone} >清除已完成任务</button>
       </div>
     )
   }
