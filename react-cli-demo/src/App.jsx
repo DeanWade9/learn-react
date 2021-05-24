@@ -12,6 +12,7 @@ export default class App extends Component {
     {id: '003', name: '写代码', done: false}
   ] }
 
+  // 添加todo对象
   addTodo = (todoObj) => {
     // 获取原todos
     const {todos} = this.state
@@ -21,13 +22,23 @@ export default class App extends Component {
     this.setState({todos: newTodos})
   }
 
+  // 更新todo对象
+  updateTodo = (id, done) => {
+    const {todos} = this.state
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) return {...todo, done}
+      else return todo
+    })
+    this.setState({todos: newTodos})
+  }
+
   render() {
     const { todos } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTodo={this.addTodo}/>
-          <List todos={todos} />
+          <List todos={todos} updateTodo={this.updateTodo} />
           <Footer />
         </div>
       </div>
