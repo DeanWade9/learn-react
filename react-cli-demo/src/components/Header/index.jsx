@@ -19,7 +19,7 @@ export default class Header extends Component {
     // 解构获取keyCode和target
     const {keyCode, target} = event
     // 判断是否是按回车键
-    if (event.keyCode !== 13) return
+    if (keyCode !== 13) return
     // 添加的todo不能为空
     if (target.value.trim() === '') {
       alert('输入不能为空')
