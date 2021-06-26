@@ -1,28 +1,48 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+import './App.css'
 
 export default class App extends Component {
-
-  getStudentData = () => {
-    axios.get('http://localhost:3000/api1/students').then(
-      response => {console.log('success,data:', response.data)},
-      error => {console.log('success,data:', error.error)}
-    )
-  }
-
-  getCarData = () => {
-    axios.get('http://localhost:3000/api2/cars').then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
-  }
-
   render() {
     return (
-      <div>
-        <button onClick={this.getStudentData}>点我获取学生数据</button>
-        <button onClick={this.getCarData}>点我获取汽车数据</button>
+      <div className="container">
+        <section className="jumbotron">
+          <h3 className="jumbotron-heading">Search Github Users</h3>
+          <div>
+            <input type="text" placeholder="enter the name you search"/>&nbsp;<button>Search</button>
+          </div>
+        </section>
+        <div className="row">
+          <div className="card">
+            <a href="https://github.com/reactjs" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{width: '100px'}}/>
+            </a>
+            <p className="card-text">reactjs</p>
+          </div>
+          <div className="card">
+            <a href="https://github.com/reactjs" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{width: '100px'}}/>
+            </a>
+            <p className="card-text">reactjs</p>
+          </div>
+          <div className="card">
+            <a href="https://github.com/reactjs" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{width: '100px'}}/>
+            </a>
+            <p className="card-text">reactjs</p>
+          </div>
+          <div className="card">
+            <a href="https://github.com/reactjs" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{width: '100px'}}/>
+            </a>
+            <p className="card-text">reactjs</p>
+          </div>
+          <div className="card">
+            <a href="https://github.com/reactjs" target="_blank">
+              <img src="https://avatars.githubusercontent.com/u/6412038?v=3" style={{width: '100px'}}/>
+            </a>
+            <p className="card-text">reactjs</p>
+          </div>
+        </div>
       </div>
     )
   }
