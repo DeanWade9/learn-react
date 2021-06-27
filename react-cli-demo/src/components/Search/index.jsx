@@ -21,26 +21,41 @@ export default class Search extends Component {
     //   }
     // )
     //#endregion
+    
+    //#region fetch未优化版本
+    /*
     fetch(`http://localhost:3000/api1/search/users?q=${keyword}`).then(
       response => {
         console.log('successfully connect to the server!')
         return response.json()
       },
-      // error => {
-      //   console.log('connection to the server failed!', error)
-      //   // 从这里以后就不会往下走了 因为服务器都没连接成功 往下走没意义
-      //   return new Promise(() => {})
-      // }
+      error => {
+        console.log('connection to the server failed!', error)
+        // 从这里以后就不会往下走了 因为服务器都没连接成功 往下走没意义
+        return new Promise(() => {})
+      }
     ).then(
       response => {
         console.log('retrieving data success!', response)
       },
-      // error => {
-      //   console.log('retrieving data error!', error)
-      // }
-    ).catch(
-      err => console.log(err)
+      error => {
+        console.log('retrieving data error!', error)
+      }
     )
+    */
+   //#endregion
+
+   fetch(`http://localhost:3000/api1/search/users?q=${keyword}`).then(
+     response => {
+       console.log('连接服务器成功!')
+       return response.json()
+     }
+   ).then(
+     response => {
+       console.log('获取数据成功!')
+       console.log(response)
+     }
+   ).catch(error => console.log('出错了!', error))
   }
 
   render() {
