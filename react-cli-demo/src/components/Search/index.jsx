@@ -4,7 +4,7 @@ import PubSub from 'pubsub-js'
 
 export default class Search extends Component {
 
-  search = () => {
+  search = async() => {
     // 获取用户输入
     const {keyWordElement: {value: keyword}} = this
     // 发送请求前通知List更新状态: 不是第一次打开页面 开始加载
@@ -45,17 +45,34 @@ export default class Search extends Component {
     */
    //#endregion
 
-   fetch(`http://localhost:3000/api1/search/users?q=${keyword}`).then(
-     response => {
-       console.log('连接服务器成功!')
-       return response.json()
-     }
-   ).then(
-     response => {
-       console.log('获取数据成功!')
-       console.log(response)
-     }
-   ).catch(error => console.log('出错了!', error))
+    //#region  
+  // 优化后代码
+  //  fetch(`http://localhost:3000/api1/search/users?q=${keyword}`).then(
+  //    response => {
+  //      console.log('连接服务器成功!')
+  //      return response.json()
+  //    }
+  //  ).then(
+  //    response => {
+  //      console.log('获取数据成功!')
+  //      console.log(response)
+  //    }
+  //  ).catch(error => console.log('出错了!', error))
+  // }
+  //#endregion
+    
+    // 再次优化后的代码
+    try {
+      const response = await fetch(`http://localhost:3000/api1/search/users?q=${keyword}`)
+      console.log(response)
+      const data = await response.json()
+      console.log(data)
+      // 请求成功后通知List更新状态
+      PubSub.publish('changeState', {isLoading: false, users: data.items})
+    } catch (error) {
+      console.log(error)
+      PubSub.publish('changeState', {isLoading: false, err: error.message})
+    }
   }
 
   render() {
