@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link, Route } from 'react-router-dom'
+import { NavLink, Route } from 'react-router-dom'
 import Home from './pages/Home' // 路由组件
 import About from './pages/About'// 路由组件
 import Header from './components/Header' // 一般组件
@@ -22,8 +22,8 @@ export default class App extends Component {
 
               {/* react中 靠路由链接实现切换组件 */}
               {/* <BrowserRouter> */}
-              <Link className="list-group-item" to="/about">About</Link>
-              <Link className="list-group-item" to="/home">Home</Link>
+              <NavLink activeClassName="biu" className="list-group-item" to="/about">About</NavLink>
+              <NavLink activeClassName="biu" className="list-group-item" to="/home">Home</NavLink>
               {/* </BrowserRouter> */}
             </div>
           </div>
