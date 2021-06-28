@@ -4,6 +4,7 @@ import Home from './pages/Home' // 路由组件
 import About from './pages/About'// 路由组件
 import Header from './components/Header' // 一般组件
 import MyNavLink from './components/MyNavLink'
+import Test from './pages/Test'
 
 export default class App extends Component {
   render() {
@@ -27,8 +28,8 @@ export default class App extends Component {
               {/* <NavLink activeClassName="biu" className="list-group-item" to="/home">Home</NavLink> */}
 
               
-              <MyNavLink to="/dean/about">About</MyNavLink>
-              <MyNavLink to="/dean/home">Home</MyNavLink>
+              <MyNavLink to="/about">About</MyNavLink>
+              <MyNavLink to="/home">Home</MyNavLink>
               {/* </BrowserRouter> */}
             </div>
           </div>
@@ -36,8 +37,9 @@ export default class App extends Component {
             <div className="panel">
               <div className="panel-body">
                 <Switch>
-                  <Route path="/dean/about" component={About}></Route>
-                  <Route path="/dean/home" component={Home}></Route>
+                  <Route path="/about" component={About}></Route>
+                  <Route path="/home" component={Home}></Route>
+                  <Route path="/home" component={Test}></Route>
                 </Switch>
               </div>
             </div>
