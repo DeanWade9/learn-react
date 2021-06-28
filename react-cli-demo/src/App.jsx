@@ -25,8 +25,10 @@ export default class App extends Component {
               {/* <BrowserRouter> */}
               {/* <NavLink activeClassName="biu" className="list-group-item" to="/about">About</NavLink> */}
               {/* <NavLink activeClassName="biu" className="list-group-item" to="/home">Home</NavLink> */}
-              <MyNavLink to="/about" title="About"></MyNavLink>
-              <MyNavLink to="/home" title="Home"></MyNavLink>
+
+              
+              <MyNavLink to="/about">About</MyNavLink>
+              <MyNavLink to="/home">Home</MyNavLink>
               {/* </BrowserRouter> */}
             </div>
           </div>
