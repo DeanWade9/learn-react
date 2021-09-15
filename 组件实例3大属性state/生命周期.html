@@ -20,15 +20,27 @@
   // 创建组件
   class Life extends React.Component {
 
+    state = { opacity: 1 }
+
     destroy = () => {
       ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
+    }
+
+    action = () => {
+      setInterval(() => {
+        let { opacity } = this.state
+        opacity -= 0.1
+        if (opacity <= 0) opacity = 1
+        this.setState({opacity})
+      }, 200)
     }
 
     render() {
       return(
         <div>
-          <h2>Let's do something fun</h2>
+          <h2 style={{ opacity: this.state.opacity }}>Let's do something fun</h2>
           <button onClick={this.destroy}>Click</button>
+          <button onClick={this.action}>Action</button>
         </div>
       )
     }
