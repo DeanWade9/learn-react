@@ -23,8 +23,6 @@
     state = { opacity: 1 }
 
     destroy = () => {
-      // 先清除定时器
-      clearInterval(this.timer)
       ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
     }
 
@@ -36,6 +34,12 @@
         if (opacity <= 0) opacity = 1
         this.setState({opacity})
       }, 200)
+    }
+
+    // 组件将要卸载
+    componentWillUnmount () {
+      // 先清除定时器
+      clearInterval(this.timer)
     }
 
     // render调用的时机： 初始化渲染 状态更新之后
