@@ -26,7 +26,8 @@
       ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
     }
 
-    action = () => {
+    // 组件挂载完毕调用
+    componentDidMount () {
       setInterval(() => {
         let { opacity } = this.state
         opacity -= 0.1
@@ -35,12 +36,12 @@
       }, 200)
     }
 
+    // render调用的时机： 初始化渲染 状态更新之后
     render() {
       return(
         <div>
           <h2 style={{ opacity: this.state.opacity }}>Let's do something fun</h2>
           <button onClick={this.destroy}>Click</button>
-          <button onClick={this.action}>Action</button>
         </div>
       )
     }
