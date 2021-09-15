@@ -23,12 +23,14 @@
     state = { opacity: 1 }
 
     destroy = () => {
+      // 先清除定时器
+      clearInterval(this.timer)
       ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
     }
 
     // 组件挂载完毕调用
     componentDidMount () {
-      setInterval(() => {
+      this.timer = setInterval(() => {
         let { opacity } = this.state
         opacity -= 0.1
         if (opacity <= 0) opacity = 1
