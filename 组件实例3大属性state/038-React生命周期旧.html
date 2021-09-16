@@ -29,6 +29,11 @@
         this.setState({ count: count + 1 })
       }
 
+      // 卸载组件回调
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById('test'))
+      }
+
       // 组件将要挂载的钩子
       componentWillMount () {
         console.log('Count - componentWillMount')
@@ -39,6 +44,27 @@
         console.log('Count - componentDidMount')
       }
 
+      // 组件将要卸载的钩子
+      componentWillUnmount() {
+        console.log('Count - componentWillUnmount')
+      }
+
+      // 不写这个钩子函数的话 默认返回值就是true
+      shouldComponentUpdate() {
+        console.log('Count - shouldComponentUpdate')
+        return true
+      }
+
+      // 组件将要更新的钩子
+      componentWillUpdate() {
+        console.log('Count - componentWillUpdate')
+      }
+
+      // 组件更新完毕的钩子
+      componentDidUpdate() {
+        console.log('Count - componentDidUpdate')
+      }
+
       render () {
         console.log('Count - render')
         const { count } = this.state
@@ -46,6 +72,7 @@
           <div>
             <h2>Current Sum：{ count }</h2>
             <button onClick={this.add}>Click to add 1</button>
+            <button onClick={this.death}>Unmount Component</button>
           </div>
         )
       }
