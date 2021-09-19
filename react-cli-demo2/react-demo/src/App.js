@@ -12,11 +12,17 @@ export default class App extends Component {
     { id: '003', msg: 'Code', done: false }
   ] }
 
+  addTodo = (todoObj) => {
+    const {todos} = this.state
+    const newTodos = [todoObj, ...todos]
+    this.setState({todos: newTodos})
+  }
+
   render(){
     const {todos} = this.state
     return(
       <div className="todo-container">
-        <Header />
+        <Header addTodo={this.addTodo} />
         <List todos={todos} />
         <Footer />
       </div>
