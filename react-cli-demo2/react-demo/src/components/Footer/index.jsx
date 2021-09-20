@@ -23,6 +23,10 @@ export default class Footer extends Component {
     this.props.checkAll(flag)
   }
 
+  handleClearAllDone = () => {
+    this.props.clearAllDone()
+  }
+
   render() {
     const {todos} = this.props
 
@@ -35,7 +39,7 @@ export default class Footer extends Component {
           <input type="checkbox" onChange={this.handleSelectAll} checked={todos.length === doneCount && todos.length !== 0? true : false} />
           <span>Done: {doneCount} / All: {totalCount}</span>
         </label>
-        <button className="btn btn-danger">Delete Completed Missions</button>
+        <button onClick={this.handleClearAllDone} className="btn btn-danger">Delete Completed Missions</button>
       </div>
     )
   }
