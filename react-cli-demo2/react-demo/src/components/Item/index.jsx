@@ -18,7 +18,9 @@ export default class Item extends Component {
   }
 
   handleDelete = (id) => {
-    this.props.deleteTodo(id)
+    if (window.confirm('Sure to delete this todo?')) {
+      this.props.deleteTodo(id)
+    }
   }
 
   render() {
