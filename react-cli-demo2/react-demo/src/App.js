@@ -38,13 +38,22 @@ export default class App extends Component {
     this.setState({todos: newTodos})
   }
 
+  checkAll = (flag) => {
+    const {todos} = this.state
+    const newTodos = todos.map(todo => {
+      todo.done = flag
+      return todo
+    })
+    this.setState({todos: newTodos})
+  }
+
   render(){
     const {todos} = this.state
     return(
       <div className="todo-container">
         <Header addTodo={this.addTodo} />
         <List todos={todos} changeTodo={this.changeTodo} deleteTodo={this.deleteTodo} />
-        <Footer />
+        <Footer todos={todos} checkAll={this.checkAll} />
       </div>
     )
   }
