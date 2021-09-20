@@ -28,8 +28,6 @@ export default class App extends Component {
       }
     })
 
-    console.log(newTodos)
-
     this.setState({todos: newTodos})
   }
 
