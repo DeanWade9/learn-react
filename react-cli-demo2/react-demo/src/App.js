@@ -31,12 +31,19 @@ export default class App extends Component {
     this.setState({todos: newTodos})
   }
 
+  deleteTodo = (id) => {
+    const {todos} = this.state
+    const newTodos = todos.filter(todo => todo.id !== id)
+    console.log(newTodos)
+    this.setState({todos: newTodos})
+  }
+
   render(){
     const {todos} = this.state
     return(
       <div className="todo-container">
         <Header addTodo={this.addTodo} />
-        <List todos={todos} changeTodo={this.changeTodo} />
+        <List todos={todos} changeTodo={this.changeTodo} deleteTodo={this.deleteTodo} />
         <Footer />
       </div>
     )
