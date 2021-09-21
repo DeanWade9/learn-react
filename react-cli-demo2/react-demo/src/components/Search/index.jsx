@@ -5,13 +5,18 @@ export default class Search extends Component {
 
   search = () => {
     const {keyWordElement: {value}} = this
-    console.log(value)
+    this.props.updateAppState({
+      isFirst: false,
+      isLoading: true
+    })
     axios.get(`/api1/search/users?q=${value}`).then(
       response => {
-        // console.log('success', response.data)
-        this.props.saveUsers(response.data.items)
+        this.props.updateAppState({
+          isLoading: false,
+          users: response.data.items
+        })
       },
-      error => console.log('error', error)
+      error => this.props.updateAppState({isLoading: false, err: error})
     )
   }
 
