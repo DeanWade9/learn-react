@@ -1,26 +1,20 @@
 import React, { Component } from 'react'
-import Search from './components/Search'
-import List from './components/List'
+import './app.css'
 
 export default class App extends Component {
-
-  state = {
-    users: [],
-    isFirst: true, // 是否第一次打开页面
-    isLoading: false,
-    err: ''
-  }
-
-  updateAppState = (stateObj) => {
-    this.setState(stateObj)
-  }
 
   render() {
     return (
       <div className="container">
-        <Search updateAppState={this.updateAppState} />
-        <div className="row">
-          <List {...this.state} />
+        <div className="title">React Router Demo</div>
+        <div className="wrapper">
+          <div className="nav">
+            <a className="nav-item">About</a>
+            <a className="nav-item">Home</a>
+          </div>
+          <div className="show">
+            show
+          </div>
         </div>
       </div>
     )
