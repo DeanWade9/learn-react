@@ -19,9 +19,16 @@
       }
     }
 
-    class Student extends Person {}
+    class Student extends Person {
+      constructor(name,age, grade) {
+        // if child class A extends parent class B, and class A has a constructor, then class A must call super
+        // super must be at the first line of child class constructor
+        super(name,age)
+        this.grade = grade
+      }
+    }
 
-    const s1 = new Student('dean', 30)
+    const s1 = new Student('dean', 30, 99)
     console.log(s1)
   </script>
 </body>
