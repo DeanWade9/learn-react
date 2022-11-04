@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类组件</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+      // 类式组件必须满足3个条件
+      // 1.must extends React.Component
+      // 2.must has a render function
+      // 3.must return value within render function
+    class MyComponent extends React.Component {
+      // render函数放在 MyComponent的原型对象上 供实例使用
+      render() {
+        console.log('this in render:', this) // render种的this是 MyComponent组件实例对象
+        return <div style={{color: 'lightblue', backgroundColor: '#111', paddingLeft: '20px'}}>this is a div</div>
+      }
+    }
+    // 发生了什么： React发现组件是类定义的 就new出来类的实例 通过类实例调用原型上的render方法 将render返回的虚拟DOM转为真实DOM 渲染在页面上
+    ReactDOM.render(<MyComponent />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
