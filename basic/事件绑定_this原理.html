@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Animal {
+      constructor(name, food) {
+        this.name = name
+        this.food = food
+      }
+      eat() {
+        console.log('this:', this)
+        console.log(`${this.name} is eating ${this.food}`)
+      }
+    }
+
+    const a = new Animal('monkey', 'banana')
+    const x = a.eat
+    // 第二次通过x调用eat，而class类中的局部方法默认开启严格模式，所以this指向undefined而不是window
+    x()
+  </script>
+</body>
+</html>
