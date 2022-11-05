@@ -18,8 +18,9 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/babel">
     class Weather extends React.Component {
-      constructor() {
-        super()
+      // 因为Weather extends了父类React.Component 子类Weather中写了constructor构造器 那么就必须在构造器第一行调用super
+      constructor(props) {
+        super(props) // must call super first
         this.state = {isHot: false}
       }
       render() {
