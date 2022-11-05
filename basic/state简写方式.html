@@ -18,11 +18,11 @@
   <script type="text/javascript" src="../js/prop-types.js"></script>
   <script type="text/babel">
     class ClickMe extends React.Component {
-      constructor(props) {
-        console.log('constructor trigger')
-        super(props)
-        // 解决类中this指向问题 bind返回一个新函数 是参照原型对象上的handleClick方法 斌且把内部的this绑定为实例自身
-      }
+      // constructor(props) {
+      //   console.log('constructor trigger')
+      //   super(props)
+      //   // 解决类中this指向问题 bind返回一个新函数 是参照原型对象上的handleClick方法 斌且把内部的this绑定为实例自身
+      // }
 
       state = {isHot: false, mood: 'happy'}
 
