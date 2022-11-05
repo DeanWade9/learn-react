@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>类组件构造器props的作用</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <!-- 用于对组件标签属性props进行限制  React16和以后的版本中把这一块剥离成单独的库-->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class ClickMe extends React.Component {
+      // constructor的props参数和super(props)只有一个作用，就是如果你希望在构造器constructor中可以使用this访问props，就必须写
+      // constructor(props) {
+      //   super(props)
+      //   console.log('constructor this.props: ', this.props)
+      // }
+
+      // 不接props，不写super(props):
+      constructor() {
+        super()
+        console.log('constructor this.props: ', this.props)
+      }
+      render() {
+        const {name, age, nationality} = this.props
+        return (
+          <ul>
+            <li>Name: {name}</li>  
+            <li>Name: {age}</li>
+            <li>Nationality: {nationality}</li>
+          </ul>
+        )
+      }
+      static propTypes = {
+        name: PropTypes.string.isRequired,
+        age: PropTypes.number,
+        speak: PropTypes.func
+      }
+
+      static defaultProps = {
+        nationality: 'USA'
+      }
+    }
+
+    function speak() {
+      console.log('speak')
+    }
+
+    const p = {name:"dean", age:30}
+    // 注意这里并不是展开运算符 只是react和babel共同作用下 可以且仅仅可以在标签中使用 ...obj去批量传入props的语法
+    // 正常js中是不可以对一个object进行展开运算符运算的
+    ReactDOM.render(<ClickMe  {...p} />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
