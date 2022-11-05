@@ -20,17 +20,20 @@
     class ClickMe extends React.Component {
       constructor(props) {
         super(props)
+        // 解决类中this指向问题 bind返回一个新函数 是参照原型对象上的handleClick方法 斌且把内部的this绑定为实例自身
+        this.handleClick = this.handleClick.bind(this)
       }
       render() {
-        return <div onClick={handleClick} style={{color: 'rgb(29, 155, 240)'}}>Click Me To Trigger Console.log</div>
+        // this.handleClick是类的局部方法 交给onClick做为回调函数 不是类实例调用的 内部this指向undefined
+        return <div onClick={this.handleClick} style={{color: 'rgb(29, 155, 240)'}}>Click Me To Trigger Console.log</div>
+      }
+      handleClick() {
+        // 类ClickMe中的局部方法默认开启严格模式 this为undefined
+        console.log('this:', this)
       }
     }
 
     ReactDOM.render(<ClickMe />, document.getElementById('test1'))
-
-    function handleClick() {
-      console.log('clicked!')
-    }
   </script>
 </body>
 </html>
