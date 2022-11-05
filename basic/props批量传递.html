@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>props使用</title>
+  <title>props批量传递</title>
 </head>
 <body>
   <div id="test1"></div>
-  <div id="test2"></div>
-  <div id="test3"></div>
   <!-- 引入react核心库 -->
   <script type="text/javascript" src="../js/react.development.js"></script>
   <!-- 引入react-dom 用于支持react操作DOM -->
@@ -30,10 +28,10 @@
         )
       }
     }
-
-    ReactDOM.render(<ClickMe  name="dean" age="30" />, document.getElementById('test1'))
-    ReactDOM.render(<ClickMe  name="amy" age="33" />, document.getElementById('test2'))
-    ReactDOM.render(<ClickMe  name="jing" age="39" />, document.getElementById('test3'))
+    const p = {name:"dean", age:"30"}
+    // 注意这里并不是展开运算符 只是react和babel共同作用下 可以且仅仅可以在标签中使用 ...obj去批量传入props的语法
+    // 正常js中是不可以对一个object进行展开运算符运算的
+    ReactDOM.render(<ClickMe  {...p} />, document.getElementById('test1'))
   </script>
 </body>
 </html>
