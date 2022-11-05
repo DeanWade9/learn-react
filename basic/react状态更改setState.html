@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>react状态更改setState</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class ClickMe extends React.Component {
+      constructor(props) {
+        console.log('constructor trigger')
+        super(props)
+        this.state = {isHot: false, mood: 'happy'}
+        // 解决类中this指向问题 bind返回一个新函数 是参照原型对象上的handleClick方法 斌且把内部的this绑定为实例自身
+        this.handleClick = this.handleClick.bind(this)
+      }
+      render() {
+        console.log('render trigger') // render执行 1+n次 n是状态更新的次数
+        const {isHot, mood} = this.state
+        // this.handleClick是类的局部方法 交给onClick做为回调函数 不是类实例调用的 内部this指向undefined
+        return <div onClick={this.handleClick} style={{color: 'rgb(29, 155, 240)'}}>Today is {isHot ? 'hot' : 'cold'}, i am {mood}.</div>
+      }
+      handleClick() {
+        // 类ClickMe中的局部方法默认开启严格模式 this为undefined
+        console.log('this:', this)
+        const {isHot} = this.state
+        let cMood = isHot ? 'unhappy':'happy'
+        this.setState({isHot: !isHot, mood: cMood})
+      }
+    }
+
+    ReactDOM.render(<ClickMe />, document.getElementById('test1'))
+  </script>
+</body>
+</html>
