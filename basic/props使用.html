@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>react状态更改setState</title>
+</head>
+<body>
+  <div id="test1"></div>
+  <div id="test2"></div>
+  <div id="test3"></div>
+  <!-- 引入react核心库 -->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <!-- 引入react-dom 用于支持react操作DOM -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- 引入babel 用于将jsx转化为js -->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+  <!-- 引入prop-types，用于对组件标签属性限制 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+  <script type="text/babel">
+    class ClickMe extends React.Component {
+      render() {
+        const {name, age} = this.props
+        return (
+          <ul>
+            <li>Name: {name}</li>  
+            <li>Name: {age}</li>  
+          </ul>
+        )
+      }
+    }
+
+    ReactDOM.render(<ClickMe  name="dean" age="30" />, document.getElementById('test1'))
+    ReactDOM.render(<ClickMe  name="amy" age="33" />, document.getElementById('test2'))
+    ReactDOM.render(<ClickMe  name="jing" age="39" />, document.getElementById('test3'))
+  </script>
+</body>
+</html>
