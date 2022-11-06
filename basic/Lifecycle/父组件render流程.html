@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生命周期1</title>
+  </head>
+  <body>
+    <div id="test1"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel 用于将jsx转化为js -->
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <!-- 引入prop-types，用于对组件标签属性限制 -->
+    <script type="text/javascript" src="../../js/prop-types.js"></script>
+    <script type="text/babel">
+      class A extends React.Component {
+        state = {
+          valueA: 'aaa',
+        }
+
+        changeState = () => {
+          console.log('----------  processing...  ----------')
+          this.setState({
+            valueA: 'xxx' + Math.random(),
+          })
+        }
+
+        // 组件将要挂载的钩子
+        componentWillMount() {
+          console.log('A->componentWillMount')
+        }
+
+        // 组件完成挂载的钩子
+        componentDidMount() {
+          console.log('A->componentDidMount')
+        }
+
+        // 组件将要卸载的钩子
+        componentWillUnmount() {
+          console.log('A->componentWillUnmount')
+        }
+
+        // 组件是否应该更新的钩子
+        shouldComponentUpdate() {
+          console.log('A->shouldComponentUpdate')
+          return true
+        }
+
+        // 组件将要更新的钩子
+        componentWillUpdate() {
+          console.log('A->componentWillUpdate')
+        }
+
+        // 组件更新完毕的钩子
+        componentDidUpdate() {
+          console.log('A->componentDidUpdate')
+        }
+
+        render() {
+          console.log('render A')
+          return (
+            <div>
+              <div>A Component</div>
+              <button onClick={this.changeState}>
+                Click to change state of A
+              </button>
+              <B valueA={this.state.valueA} />
+            </div>
+          )
+        }
+      }
+
+      class B extends React.Component {
+        componentWillReceiveProps(props) {
+          console.log('B -> componentWillReceiveProps', props)
+        }
+
+        // 组件将要挂载的钩子
+        componentWillMount() {
+          console.log('B->componentWillMount')
+        }
+
+        // 组件完成挂载的钩子
+        componentDidMount() {
+          console.log('B->componentDidMount')
+        }
+
+        // 组件将要卸载的钩子
+        componentWillUnmount() {
+          console.log('B->componentWillUnmount')
+        }
+
+        // 组件是否应该更新的钩子
+        shouldComponentUpdate() {
+          console.log('B->shouldComponentUpdate')
+          return true
+        }
+
+        // 组件将要更新的钩子
+        componentWillUpdate() {
+          console.log('B->componentWillUpdate')
+        }
+
+        // 组件更新完毕的钩子
+        componentDidUpdate() {
+          console.log('B->componentDidUpdate')
+        }
+        render() {
+          console.log('render B')
+          return (
+            <div>
+              <h2>B</h2>
+              <h3>receive data from A: {this.props.valueA}</h3>
+            </div>
+          )
+        }
+      }
+      ReactDOM.render(<A />, document.getElementById('test1'))
+    </script>
+  </body>
+</html>
