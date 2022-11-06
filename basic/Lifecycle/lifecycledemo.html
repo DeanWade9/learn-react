@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>生命周期1</title>
+  </head>
+  <body>
+    <div id="test1"></div>
+    <!-- 引入react核心库 -->
+    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <!-- 引入react-dom 用于支持react操作DOM -->
+    <script
+      type="text/javascript"
+      src="../../js/react-dom.development.js"
+    ></script>
+    <!-- 引入babel 用于将jsx转化为js -->
+    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <!-- 引入prop-types，用于对组件标签属性限制 -->
+    <script type="text/javascript" src="../../js/prop-types.js"></script>
+    <script type="text/babel">
+      class LifeCycleDemo extends React.Component {
+        buttonClick = () => {
+          // 清除定时器
+          // clearInterval(this.timer)
+          // 卸载组件 unmount component
+          ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
+        }
+
+        state = {
+          opacity: 1,
+        }
+
+        // 组件将要卸载
+        componentWillUnmount() {
+          // 清除定时器
+          clearInterval(this.timer)
+        }
+
+        // 组件挂载完毕后调用
+        componentDidMount() {
+          this.timer = setInterval(() => {
+            let opacity = this.state.opacity
+            opacity -= 0.1
+            if (opacity <= 0) opacity = 1
+            this.setState({ opacity })
+          }, 100)
+        }
+
+        // render调用时机： 1.初始化渲染 2.状态更新
+        render() {
+          return (
+            <div>
+              <h1 style={{ opacity: this.state.opacity }}>
+                Keep Calm And Show Me The Code!
+              </h1>
+              <button onClick={this.buttonClick}>Eliminate Button</button>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<LifeCycleDemo />, document.getElementById('test1'))
+    </script>
+  </body>
+</html>
