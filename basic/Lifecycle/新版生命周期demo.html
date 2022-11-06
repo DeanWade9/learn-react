@@ -4,21 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>生命周期2</title>
+    <title>新版生命周期demo</title>
   </head>
   <body>
     <div id="test1"></div>
     <!-- 引入react核心库 -->
-    <script type="text/javascript" src="../../js/react.development.js"></script>
+    <script
+      type="text/javascript"
+      src="../../js-new/react.development.js"
+    ></script>
     <!-- 引入react-dom 用于支持react操作DOM -->
     <script
       type="text/javascript"
-      src="../../js/react-dom.development.js"
+      src="../../js-new/react-dom.development.js"
     ></script>
     <!-- 引入babel 用于将jsx转化为js -->
-    <script type="text/javascript" src="../../js/babel.min.js"></script>
+    <script type="text/javascript" src="../../js-new/babel.min.js"></script>
     <!-- 引入prop-types，用于对组件标签属性限制 -->
-    <script type="text/javascript" src="../../js/prop-types.js"></script>
+    <script type="text/javascript" src="../../js-new/prop-types.js"></script>
     <script type="text/babel">
       class Count extends React.Component {
         constructor(props) {
@@ -40,11 +43,10 @@
           ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
         }
 
-        // 组件将要挂载的钩子
-        componentWillMount() {
-          console.log('Count->componentWillMount')
+        force = () => {
+          console.log('forceUpdate')
+          this.forceUpdate()
         }
-
         // 组件完成挂载的钩子
         componentDidMount() {
           console.log('Count->componentDidMount')
@@ -61,16 +63,21 @@
           return true
         }
 
-        // 组件将要更新的钩子
-        componentWillUpdate() {
-          console.log('Count->componentWillUpdate')
-        }
-
         // 组件更新完毕的钩子
         componentDidUpdate() {
           console.log('Count->componentDidUpdate')
         }
 
+        static getDerivedStateFromProps(props, state) {
+          console.log(
+            'Count->getDerivedStateFromProps',
+            'props:',
+            props,
+            'state:',
+            state
+          )
+          return props
+        }
         render() {
           console.log('Count->render')
           return (
@@ -78,11 +85,12 @@
               <h1>Count: {this.state.count}</h1>
               <button onClick={this.addOne}>Add 1</button>
               <button onClick={this.removeComp}>Remove Component</button>
+              <button onClick={this.force}>forceUpdate</button>
             </div>
           )
         }
       }
-      ReactDOM.render(<Count />, document.getElementById('test1'))
+      ReactDOM.render(<Count count={146} />, document.getElementById('test1'))
     </script>
   </body>
 </html>
