@@ -11,12 +11,21 @@ export default class App extends Component {
       {taskName: 'a2', id: '002', done: true}
     ]
   }
+
+  addTask = (taskObj) => {
+    const { todoList } = this.state
+    const newList = [taskObj, ...todoList]
+    this.setState({
+      todoList: newList
+    })
+  }
+
   render() {
     const { todoList } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
-          <Header />
+          <Header addTask={this.addTask} />
           <List todoList={todoList} />
           <Footer />
         </div>
