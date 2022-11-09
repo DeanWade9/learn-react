@@ -8,7 +8,8 @@ export default class Item extends Component {
   }
 
   static propTypes = {
-    updateTaskStatus: PropTypes.func.isRequired
+    updateTaskStatus: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired
   }
 
   handleMouseAction = (flag) => {
@@ -19,20 +20,20 @@ export default class Item extends Component {
     }
   }
 
-  // handleStatusChange = (id) => {
-  //   console.log(id)
-  //   return (e) => {
-  //     const { updateTaskStatus } = this.props
-  //     const status = e.target.checked
-  //     updateTaskStatus(id, status)
-  //   }
-  // }
+  // change task check status by id
   handleStatusChange = (id) => {
     return (e) => {
       const { updateTaskStatus } = this.props
       const status = e.target.checked
       console.log('param:', id, status)
       updateTaskStatus(id, status)
+    }
+  }
+
+  // delete task by id
+  handleDeleteTask = (id) => {
+    return () => {
+      this.props.deleteTask(id)
     }
   }
 
@@ -44,7 +45,7 @@ export default class Item extends Component {
           <input type="checkbox" defaultChecked={done} onChange={this.handleStatusChange(id)} />
           <span>{taskName}</span>
         </label>
-        <button className="btn btn-danger" style={{display: this.state.highlight ? 'block' : 'none'}} >删除</button>
+        <button className="btn btn-danger" style={{display: this.state.highlight ? 'block' : 'none'}} onClick={this.handleDeleteTask(id)}>删除</button>
       </li>
     )
   }

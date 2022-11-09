@@ -35,13 +35,23 @@ export default class App extends Component {
     })
   }
 
+  // 删除task
+  deleteTask = (id) => {
+    console.log(111, id)
+    const newList = this.state.todoList.filter(t => t.id !== id)
+    console.log(newList, 111)
+    this.setState({
+      todoList: newList
+    })
+  }
+
   render() {
     const { todoList } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTask={this.addTask} />
-          <List todoList={todoList} updateTaskStatus={this.updateTaskStatus} />
+          <List todoList={todoList} updateTaskStatus={this.updateTaskStatus} deleteTask={this.deleteTask} />
           <Footer />
         </div>
       </div>
