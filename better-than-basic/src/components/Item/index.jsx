@@ -42,7 +42,7 @@ export default class Item extends Component {
     return (
       <li onMouseEnter={this.handleMouseAction(true)} onMouseLeave={this.handleMouseAction(false)}>
         <label>
-          <input type="checkbox" defaultChecked={done} onChange={this.handleStatusChange(id)} />
+          <input type="checkbox" checked={done} onChange={this.handleStatusChange(id)} />
           <span>{taskName}</span>
         </label>
         <button className="btn btn-danger" style={{display: this.state.highlight ? 'block' : 'none'}} onClick={this.handleDeleteTask(id)}>删除</button>

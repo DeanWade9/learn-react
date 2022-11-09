@@ -37,9 +37,17 @@ export default class App extends Component {
 
   // 删除task
   deleteTask = (id) => {
-    console.log(111, id)
     const newList = this.state.todoList.filter(t => t.id !== id)
-    console.log(newList, 111)
+    this.setState({
+      todoList: newList
+    })
+  }
+
+  // 全选/取消全选
+  selectAll = (status) => {
+    const newList = this.state.todoList.map(t => {
+      return {...t, done: status}
+    })
     this.setState({
       todoList: newList
     })
@@ -52,7 +60,7 @@ export default class App extends Component {
         <div className="todo-wrap">
           <Header addTask={this.addTask} />
           <List todoList={todoList} updateTaskStatus={this.updateTaskStatus} deleteTask={this.deleteTask} />
-          <Footer />
+          <Footer todoList={todoList} selectAll={this.selectAll} />
         </div>
       </div>
     )
