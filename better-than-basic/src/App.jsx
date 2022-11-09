@@ -20,13 +20,28 @@ export default class App extends Component {
     })
   }
 
+  // 修改todolist 勾选状态 done的值
+  updateTaskStatus = (id, status) => {
+    const newList = this.state.todoList.map(t => {
+      if (t.id == id) {
+        return {...t, done: status}
+      } else {
+        return t
+      }
+    })
+    console.log('newList:', newList)
+    this.setState({
+      todoList: newList
+    })
+  }
+
   render() {
     const { todoList } = this.state
     return (
       <div className="todo-container">
         <div className="todo-wrap">
           <Header addTask={this.addTask} />
-          <List todoList={todoList} />
+          <List todoList={todoList} updateTaskStatus={this.updateTaskStatus} />
           <Footer />
         </div>
       </div>

@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import {nanoid} from 'nanoid'
+import PropTypes from 'prop-types'
 import './index.css'
 
 export default class Header extends Component {
+  static propTypes = {
+    addTask: PropTypes.func.isRequired
+  }
   handleKeyUp = (e) => {
     const {target, keyCode} = e
     const {addTask} = this.props

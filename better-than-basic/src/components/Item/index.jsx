@@ -1,16 +1,50 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import './index.css'
 
 export default class Item extends Component {
+  state = {
+    highlight: false
+  }
+
+  static propTypes = {
+    updateTaskStatus: PropTypes.func.isRequired
+  }
+
+  handleMouseAction = (flag) => {
+    return () => {
+      this.setState({
+        highlight: flag
+      })
+    }
+  }
+
+  // handleStatusChange = (id) => {
+  //   console.log(id)
+  //   return (e) => {
+  //     const { updateTaskStatus } = this.props
+  //     const status = e.target.checked
+  //     updateTaskStatus(id, status)
+  //   }
+  // }
+  handleStatusChange = (id) => {
+    return (e) => {
+      const { updateTaskStatus } = this.props
+      const status = e.target.checked
+      console.log('param:', id, status)
+      updateTaskStatus(id, status)
+    }
+  }
+
   render() {
     const {taskName, id, done} = this.props
     return (
-      <li>
+      <li onMouseEnter={this.handleMouseAction(true)} onMouseLeave={this.handleMouseAction(false)}>
         <label>
-          <input type="checkbox"/>
+          <input type="checkbox" defaultChecked={done} onChange={this.handleStatusChange(id)} />
           <span>{taskName}</span>
         </label>
-        <button className="btn btn-danger" style={{display:'none'}}>删除</button>
+        <button className="btn btn-danger" style={{display: this.state.highlight ? 'block' : 'none'}} >删除</button>
       </li>
     )
   }
