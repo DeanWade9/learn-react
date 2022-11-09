@@ -53,6 +53,14 @@ export default class App extends Component {
     })
   }
 
+  // 批量删除已完成
+  deleteAllSelected = () => {
+    const newList = this.state.todoList.filter(t => !t.done)
+    this.setState({
+      todoList: newList
+    })
+  }
+
   render() {
     const { todoList } = this.state
     return (
@@ -60,7 +68,7 @@ export default class App extends Component {
         <div className="todo-wrap">
           <Header addTask={this.addTask} />
           <List todoList={todoList} updateTaskStatus={this.updateTaskStatus} deleteTask={this.deleteTask} />
-          <Footer todoList={todoList} selectAll={this.selectAll} />
+          <Footer todoList={todoList} selectAll={this.selectAll} deleteAllSelected={this.deleteAllSelected} />
         </div>
       </div>
     )
