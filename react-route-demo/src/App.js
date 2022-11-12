@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, NavLink, Route} from 'react-router-dom'
+import {Link, NavLink, Redirect, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Header from './components/Header'
@@ -19,6 +19,7 @@ export default class App extends Component {
             <div className="show-area">
               <Route path="/about" component={About}></Route>
               <Route path="/home" component={Home}></Route>
+              <Redirect to="/home" />
             </div>
           </div>
         </div>
