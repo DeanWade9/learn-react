@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Link, BrowserRouter, Route} from 'react-router-dom'
+import {Link, NavLink, Route} from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
 import Header from './components/Header'
@@ -12,8 +12,8 @@ export default class App extends Component {
         <Header />
         <div className="board">
           <div className="left">
-            <Link to="/about">About</Link>
-            <Link to="/home">Home</Link>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/home">Home</NavLink>
           </div>
           <div className="right">
             <div className="show-area">

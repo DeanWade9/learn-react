@@ -28,6 +28,7 @@
 .left > a {
   display: block;
   text-decoration: none;
+  text-indent: 1em;
   color: #111;
   height: 30px;
   line-height: 30px;
@@ -48,5 +49,6 @@
 
 .active {
   background-color: #2272b9;
-  color: white;
+  color: #fff !important;
+  border-radius: 10px;
 }
