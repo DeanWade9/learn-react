@@ -6,7 +6,7 @@ import { Redirect, Route, Switch } from 'react-router'
 
 export default class Home extends Component {
   render() {
-    console.log('Home props:', this.props)
+    // console.log('Home props:', this.props)
     return (
       <div>
         <h3>Home</h3>
