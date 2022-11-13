@@ -13,10 +13,13 @@ export default class Detail extends Component {
     // 接收params路由参数 使用this.props.match.params
     // const {id, title} = this.props.match.params
 
-    // 接收search路由参数 使用this.props.location.search是?开头的urlencoded字符串 需要用内置的querystring库解析
-    const {id, title} = qs.parse(this.props.location.search.slice(1))
+    // 接收search路由参数 使用this.props.location.search是?开头的urlencoded字符串 需要用内置的qs库解析
+    // const {id, title} = qs.parse(this.props.location.search.slice(1))
+
+    // 接收state路由参数 使用this.props.location.state
+    const {id, title} = this.props.location.state
     const content = data.filter(e => e.id === id)[0].content
-    // console.log(content)
+    console.log(content)
     return (
       <ul>
         <li>ID: {id}</li>
