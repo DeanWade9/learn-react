@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons'
 // import 'antd/dist/antd.css' // 这样引入会报错
 // import 'antd/dist/antd.min.css' // 使用按需引入后 不用写这一行了 
+import 'antd/dist/antd.less'
 
 export default class App extends Component {
 

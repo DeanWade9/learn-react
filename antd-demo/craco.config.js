@@ -1,4 +1,6 @@
 const path = require('path')
+const CracoLessPlugin = require('craco-less')
+
 module.exports = {
   webpack: {
     //webpack配置
@@ -23,4 +25,17 @@ module.exports = {
       ],
     ],
   },
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            modifyVars: { '@primary-color': 'orange' },
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
 }
