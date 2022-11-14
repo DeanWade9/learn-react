@@ -1,4 +1,5 @@
-export default function countReducer(preState, action) {
+const initState = 0
+export default function countReducer(preState = initState, action) {
   console.log(preState, action)
   const { type, data } = action
   switch (type) {
@@ -7,6 +8,6 @@ export default function countReducer(preState, action) {
     case 'decrement':
       return (preState -= data)
     default:
-      return 0
+      return preState
   }
 }
