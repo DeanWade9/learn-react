@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import store from '../../redux/store'
+import {createIncrementAction, createDecrementAction} from '../../redux/count_action'
 export default class Count extends Component {
 
   componentDidMount() {
@@ -14,7 +15,8 @@ export default class Count extends Component {
     // this.setState({
     //   count: count + value * 1
     // })
-    store.dispatch({type: 'increment', data: value*1})
+    // store.dispatch({type: 'increment', data: value*1})
+    store.dispatch(createIncrementAction(value*1))
   }
   decrement = () => {
     const {value} = this.selectValue
@@ -22,7 +24,8 @@ export default class Count extends Component {
     // this.setState({
     //   count: count - value * 1
     // })
-    store.dispatch({type: 'decrement', data: value*1})
+    // store.dispatch({type: 'decrement', data: value*1})
+    store.dispatch(createDecrementAction(value*1))
   }
   incrementWhenOdd = () => {
     const {value} = this.selectValue
@@ -32,7 +35,8 @@ export default class Count extends Component {
       // this.setState({
       //   count: count + value * 1
       // })
-    store.dispatch({type: 'increment', data: value*1})
+    // store.dispatch({type: 'increment', data: value*1})
+    store.dispatch(createIncrementAction(value*1))
     }
   }
   incrementAsync = () => {
@@ -42,7 +46,8 @@ export default class Count extends Component {
       // this.setState({
       //   count: count + value * 1
       // })
-    store.dispatch({type: 'increment', data: value*1})
+    // store.dispatch({type: 'increment', data: value*1})
+    store.dispatch(createIncrementAction(value*1))
     }, 1000)
   }
 
