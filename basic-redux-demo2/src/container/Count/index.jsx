@@ -4,16 +4,11 @@ import { connect } from 'react-redux'
 
 import { createAddAction, createMinusAction, createAsyncAddAction } from '../../redux/count_actions'
 
-const mapStateToProps = (state) => {
-  return {
-    count: state
+export default connect(
+  state => ({ count: state }),
+  {
+    add: createAddAction,
+    minus: createMinusAction,
+    addAsync: createAsyncAddAction
   }
-}
-
-const mapDispatchToProps = (dispatch) => ({
-  add: (data) => dispatch(createAddAction(data)),
-  minus: (data) => dispatch(createMinusAction(data)),
-  addAsync: (data, delay) => dispatch(createAsyncAddAction(data, delay))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CountUI)
+  )(CountUI)
