@@ -1,7 +1,32 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { createAddAction, createAsyncAddAction, createMinusAction } from '../../redux/actions/count'
+class Count extends Component {
 
-export default class index extends Component {
+  getValue = () => {
+    return this.selectValue.value * 1
+  }
+
+  handleAdd = () => {
+    this.props.addOne(this.getValue())
+  }
+
+  handleMinus = () => {
+    this.props.minusOne(this.getValue())
+  }
+
+  handleAddIfOdd = () => {
+    if (this.props.count % 2 !== 0) {
+      this.props.addOne(this.getValue())
+    }
+  }
+
+  handleAddAsync = () => {
+    this.props.addOneAsync(this.getValue(), 1000)
+  }
+
   render() {
+    console.log('props in Count:', this.props)
     return (
       <div>
         <h2>Total is: {this.props.count}</h2>
@@ -21,3 +46,12 @@ export default class index extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({ count: state }),
+  {
+    addOne: createAddAction,
+    minusOne: createMinusAction,
+    addOneAsync: createAsyncAddAction
+  }
+)(Count)
