@@ -5,6 +5,9 @@ export default class Demo1 extends Component {
     count: 0
   }
 
+  /**
+   * 状态式的 setState
+   */
   add = () => {
     const { count } = this.state
     this.setState({ count: count + 1 })
@@ -20,11 +23,24 @@ export default class Demo1 extends Component {
   //   })
   // }
 
+  /**
+   * 函数式的 setState
+   */
+  add2 = () => {
+    this.setState((state, props) => {
+      console.log(state, props)
+      return { count: state.count + 1 }
+    })
+  }
+
+
   render() {
     return (
       <div>
         <h1>Count: {this.state.count}</h1>
-        <button onClick={this.add}>Add</button>
+        <button onClick={this.add}>Add触发状态式setState</button>
+        <hr />
+        <button onClick={this.add2}>Add触发函数式setState</button>
       </div>
     )
   }
