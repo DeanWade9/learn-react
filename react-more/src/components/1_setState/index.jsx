@@ -30,6 +30,8 @@ export default class Demo1 extends Component {
     this.setState((state, props) => {
       console.log(state, props)
       return { count: state.count + 1 }
+    }, () => {
+      console.log(this.state.count)
     })
   }
 
