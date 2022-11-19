@@ -19,10 +19,24 @@ export default function App() {
         <div className="col-xs-2 col-xs-offset-2">
           <div className="list-group">
             {/* 路由链接 */}
-            <NavLink className="list-group-item" to="/about">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive
+                  ? 'list-group-item highlight'
+                  : 'list-group-item'
+              }}
+              to="/about"
+            >
               About
             </NavLink>
-            <NavLink className="list-group-item" to="/home">
+            <NavLink
+              className={({ isActive }) => {
+                return isActive
+                  ? 'list-group-item highlight'
+                  : 'list-group-item'
+              }}
+              to="/home"
+            >
               Home
             </NavLink>
           </div>
