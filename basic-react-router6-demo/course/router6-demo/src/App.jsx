@@ -6,6 +6,10 @@ const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 
 export default function App() {
+  function computedClassName({ isActive }) {
+    return isActive ? 'list-group-item highlight' : 'list-group-item'
+  }
+
   return (
     <div>
       <div className="row">
@@ -19,24 +23,10 @@ export default function App() {
         <div className="col-xs-2 col-xs-offset-2">
           <div className="list-group">
             {/* 路由链接 */}
-            <NavLink
-              className={({ isActive }) => {
-                return isActive
-                  ? 'list-group-item highlight'
-                  : 'list-group-item'
-              }}
-              to="/about"
-            >
+            <NavLink className={computedClassName} to="/about">
               About
             </NavLink>
-            <NavLink
-              className={({ isActive }) => {
-                return isActive
-                  ? 'list-group-item highlight'
-                  : 'list-group-item'
-              }}
-              to="/home"
-            >
+            <NavLink className={computedClassName} to="/home">
               Home
             </NavLink>
           </div>
