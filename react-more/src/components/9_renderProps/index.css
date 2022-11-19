@@ -1,0 +1,20 @@
+.Top {
+  padding: 15px;
+  width: 700px;
+  background: lightskyblue;
+  border-radius: 0 5px 5px 0;
+}
+
+.A {
+  padding: 15px;
+  width: 600px;
+  background: lightslategray;
+  border-radius: 0 5px 5px 0;
+}
+
+.B {
+  padding: 15px;
+  width: 500px;
+  background: lightsteelblue;
+  border-radius: 0 5px 5px 0;
+}
