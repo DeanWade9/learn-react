@@ -1,14 +1,16 @@
-import React, { lazy, Suspense } from 'react'
-import { NavLink, Routes, Route, Navigate } from 'react-router-dom'
-import Loading from './pages/Loading'
+import React, {Suspense} from 'react';
+import {NavLink, useRoutes} from 'react-router-dom';
+import Loading from './pages/Loading';
 
-const Home = lazy(() => import('./pages/Home'))
-const About = lazy(() => import('./pages/About'))
+import routes from './routes';
 
 export default function App() {
-  function computedClassName({ isActive }) {
-    return isActive ? 'list-group-item highlight' : 'list-group-item'
+  function computedClassName({isActive}) {
+    return isActive ? 'list-group-item highlight' : 'list-group-item';
   }
+
+  // 根据路由表生成对应的路由规则
+  const element = useRoutes(routes);
 
   return (
     <div>
@@ -35,17 +37,11 @@ export default function App() {
           <div className="panel">
             <div className="panel-body">
               {/* 注册路由 */}
-              <Suspense fallback={<Loading />}>
-                <Routes>
-                  <Route path="/about" element={<About />}></Route>
-                  <Route path="/home" element={<Home />}></Route>
-                  <Route path="/" element={<Navigate to="/about" />}></Route>
-                </Routes>
-              </Suspense>
+              <Suspense fallback={<Loading />}>{element}</Suspense>
             </div>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
