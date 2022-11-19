@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 // import Demo2 from './components/2_lazyload'
 // import Demo3 from './components/3_stateHook'
 // import Demo4 from './components/4_useEffect'
-import Demo5 from './components/5_refHook'
+// import Demo5 from './components/5_refHook'
+import Demo6 from './components/6_fragment'
 export default class App extends Component {
   render() {
     return (
@@ -12,7 +13,8 @@ export default class App extends Component {
         {/* <Demo2></Demo2> */}
         {/* <Demo3></Demo3> */}
         {/* <Demo4></Demo4> */}
-        <Demo5></Demo5>
+        {/* <Demo5></Demo5> */}
+        <Demo6></Demo6>
       </div>
     )
   }
