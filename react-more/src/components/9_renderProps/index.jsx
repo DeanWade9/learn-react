@@ -11,9 +11,11 @@ export default class TopComp extends Component {
     return (
       <div className="Top">
         <h3>CompTop</h3>
-        <A>
+        {/* 内嵌标签体的形式让A和B组件形成父子关系 */}
+        {/* <A>
           <B></B>
-        </A>
+        </A> */}
+        <A render={() => <B />}></A>
       </div>
     )
   }
@@ -25,7 +27,8 @@ class A extends Component {
     return (
       <div className="A">
         <h3>Comp A</h3>
-        {this.props.children}
+        {/* {this.props.children} */}
+        {this.props.render()}
       </div>
     )
   }
