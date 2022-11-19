@@ -5,7 +5,8 @@ import React, { Component } from 'react'
 // import Demo4 from './components/4_useEffect'
 // import Demo5 from './components/5_refHook'
 // import Demo6 from './components/6_fragment'
-import A from './components/7_context'
+// import A from './components/7_context'
+import P from './components/8_optimize'
 export default class App extends Component {
   render() {
     return (
@@ -16,7 +17,8 @@ export default class App extends Component {
         {/* <Demo4></Demo4> */}
         {/* <Demo5></Demo5> */}
         {/* <Demo6></Demo6> */}
-        <A></A>
+        {/* <A></A> */}
+        <P></P>
       </div>
     )
   }
