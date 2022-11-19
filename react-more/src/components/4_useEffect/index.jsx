@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+import root from '../../main'
 
 // 类式组件
 // class Demo4 extends Component {
@@ -10,10 +12,20 @@ import React, { Component } from 'react'
 //     this.setState((state) => ({ count: state.count + 1 }))
 //   }
 
+//   unmount = () => {
+//     // 高版本react不能这样写了
+//     // ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+//     root.unmount()
+//   }
+
 //   componentDidMount() {
-//     setInterval(() => {
+//     this.timer = setInterval(() => {
 //       this.setState((state) => ({ count: this.state.count + 1 }))
 //     }, 1000)
+//   }
+
+//   componentWillUnmount() {
+//     clearInterval(this.timer)
 //   }
 
 //   render() {
@@ -21,6 +33,7 @@ import React, { Component } from 'react'
 //       <div>
 //         <h2>Count is: {this.state.count}</h2>
 //         <button onClick={this.add}>Add</button>
+//         <button onClick={this.unmount}>unMount</button>
 //       </div>
 //     )
 //   }
@@ -43,10 +56,20 @@ function Demo4() {
     setName((name) => name + ' hiroshi')
   }
 
+  function unmount() {
+    // ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+    root.unmount()
+  }
+
   React.useEffect(() => {
-    setInterval(() => {
+    let timer = setInterval(() => {
       setCount((count) => count + 1)
     }, 1000)
+
+    return () => {
+      console.log('consider this a componentWillUnmount hook')
+      clearInterval(timer)
+    }
   }, [])
 
   return (
@@ -55,6 +78,7 @@ function Demo4() {
       <h2>Name is: {name}</h2>
       <button onClick={add}>Add</button>
       <button onClick={changeName}>changeName</button>
+      <button onClick={unmount}>unMount</button>
     </div>
   )
 }
