@@ -3,7 +3,7 @@ import './index.css'
 
 // 在公共区域创建context上下文对象
 const MyContext = React.createContext()
-const { Provider } = MyContext
+const { Provider, Consumer } = MyContext
 
 export default class A extends Component {
   state = {
@@ -39,15 +39,36 @@ class B extends Component {
   }
 }
 
-class C extends Component {
-  static contextType = MyContext
-  render() {
-    console.log('this in CompC:', this)
-    return (
-      <div className="C">
-        <h3>Component C</h3>
-        <h3>Username rcv from CompA:{this.context.username}</h3>
-      </div>
-    )
-  }
+// class C extends Component {
+//   static contextType = MyContext
+//   render() {
+//     console.log('this in CompC:', this)
+//     return (
+//       <div className="C">
+//         <h3>Component C</h3>
+//         <h3>Username rcv from CompA:{this.context.username}</h3>
+//       </div>
+//     )
+//   }
+// }
+
+// 函数式组件 没有static 没有this
+function C() {
+  return (
+    <div className="C">
+      <h3>Component C</h3>
+      {/* <h3>Username rcv from CompA:{this.context.username}</h3> */}
+      <Consumer>
+        {(value) => {
+          console.log(value)
+          return (
+            <h3>
+              Username rcv from CompA:
+              {`username: ${value.username} age: ${value.age}`}
+            </h3>
+          )
+        }}
+      </Consumer>
+    </div>
+  )
 }
