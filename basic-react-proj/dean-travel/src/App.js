@@ -16,6 +16,19 @@ class App extends React.Component {
     this.setState({ count: this.state.count + 1 })
   }
 
+  // 通过回调的形式 可以获取到上一次的(最新的)state 然后可以在第二个回调方法中获取最新的state
+  // 这样点击一次按钮就可以给state加2了
+  handleAdd2 = () => {
+    this.setState(
+      (preState, preProps) => ({ count: preState.count + 1 }),
+      () => console.log(this.state)
+    )
+    this.setState(
+      (preState, preProps) => ({ count: preState.count + 1 }),
+      () => console.log(this.state)
+    )
+  }
+
   render() {
     return (
       <div className="App">
@@ -35,7 +48,7 @@ class App extends React.Component {
           <div style={{ width: '200px', height: '50px' }}>
             {this.state.count}
           </div>
-          <button onClick={this.handleAdd}>Add</button>
+          <button onClick={this.handleAdd2}>Add</button>
         </header>
       </div>
     )
