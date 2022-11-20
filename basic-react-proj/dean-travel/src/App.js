@@ -1,6 +1,6 @@
 import React from 'react'
-import logo from './logo.svg'
 import './App.css'
+import Demo1 from './components/useEffect-demo'
 
 class App extends React.Component {
   constructor(props) {
@@ -33,22 +33,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
           <div style={{ width: '200px', height: '50px' }}>
             {this.state.count}
           </div>
           <button onClick={this.handleAdd2}>Add</button>
+          <Demo1></Demo1>
         </header>
       </div>
     )
