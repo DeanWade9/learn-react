@@ -11,16 +11,27 @@ export default function Demo1() {
   }, [count])
 
   // useEffect第二个参数传入空数组 用来模拟ComponentDidMount钩子(只在组件挂载时候执行一次)
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((res) => res.json())
-      .then((data) => setRobotGallery(data))
-  }, [])
+  // useEffect(() => {
+  //   fetch('https://jsonplaceholder.typicode.com/users')
+  //     .then((res) => res.json())
+  //     .then((data) => setRobotGallery(data))
+  // }, [])
 
   // useEffect不传入 第二个参数 用来模拟ComponentDidUpdate
   useEffect(() => {
     console.log('useEffect')
   })
+
+  // 如何在useEffect中使用async和await
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch('https://jsonplaceholder.typicode.com/users')
+      const data = await res.json()
+      setRobotGallery(data)
+    }
+
+    fetchData()
+  }, [])
 
   return (
     <div>
