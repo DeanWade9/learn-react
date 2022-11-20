@@ -5,6 +5,7 @@ export default function Demo1() {
   const [count, setCount] = useState(0)
   const [robotGallery, setRobotGallery] = useState([])
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     // console.log('triger useEffect')
@@ -27,9 +28,13 @@ export default function Demo1() {
   useEffect(() => {
     async function fetchData() {
       setLoading(true)
-      const res = await fetch('https://jsonplaceholder.typicode.com/users')
-      const data = await res.json()
-      setRobotGallery(data)
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users')
+        const data = await res.json()
+        setRobotGallery(data)
+      } catch (error) {
+        setError(error.message)
+      }
       setLoading(false)
     }
 
@@ -53,6 +58,9 @@ export default function Demo1() {
       <button onClick={() => setCount(count + 1)}>Add 1</button>
       <hr />
       <div>
+        {(!error || error !== '') && (
+          <div>Ops...Something wrong with this site</div>
+        )}
         {!loading ? (
           robotGallery.map((r) => (
             <section key={r.id}>
