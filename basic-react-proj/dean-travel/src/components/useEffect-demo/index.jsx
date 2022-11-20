@@ -4,6 +4,7 @@ import { BsCartCheckFill } from 'react-icons/bs'
 export default function Demo1() {
   const [count, setCount] = useState(0)
   const [robotGallery, setRobotGallery] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     // console.log('triger useEffect')
@@ -25,9 +26,11 @@ export default function Demo1() {
   // 如何在useEffect中使用async和await
   useEffect(() => {
     async function fetchData() {
+      setLoading(true)
       const res = await fetch('https://jsonplaceholder.typicode.com/users')
       const data = await res.json()
       setRobotGallery(data)
+      setLoading(false)
     }
 
     fetchData()
@@ -50,13 +53,17 @@ export default function Demo1() {
       <button onClick={() => setCount(count + 1)}>Add 1</button>
       <hr />
       <div>
-        {robotGallery.map((r) => (
-          <section key={r.id}>
-            <span>id: {r.id}</span>
-            <span>email: {r.email}</span>
-            <span>name: {r.name}</span>
-          </section>
-        ))}
+        {!loading ? (
+          robotGallery.map((r) => (
+            <section key={r.id}>
+              <span>id: {r.id}</span>
+              <span>email: {r.email}</span>
+              <span>name: {r.name}</span>
+            </section>
+          ))
+        ) : (
+          <h2>loading...</h2>
+        )}
       </div>
     </div>
   )
