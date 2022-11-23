@@ -11,6 +11,11 @@
   margin-bottom: 24px;
 }
 
+h1 {
+  font-family: 'Slidefu';
+  font-size: 72px;
+}
+
 .appLogo {
   height: 10vmin;
   pointer-events: none;
@@ -23,8 +28,8 @@
 }
 
 .robotList {
-	width: 85vw;
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr 1fr;
-	grid-gap: 20px;
+  width: 85vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
 }
