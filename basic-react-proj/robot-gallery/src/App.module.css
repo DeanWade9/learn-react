@@ -16,6 +16,9 @@ h1 {
   font-size: 72px;
 }
 
+.test {
+}
+
 .appLogo {
   height: 10vmin;
   pointer-events: none;
